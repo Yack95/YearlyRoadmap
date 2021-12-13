@@ -4,7 +4,7 @@ function loadCategories(){
   var categoryValues = categoryDataSheet.getRange(2,1, categoryDataSheet.getLastRow()-1, categoryDataSheet.getLastColumn()).getDisplayValues();
   
   var activities = loadActivityData()
-  
+
   var categories = categoryValues.map((row)=>{
    var category = {
        categoryId:row[0],

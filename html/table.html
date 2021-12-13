@@ -4,16 +4,11 @@
     <base target="_top">
   </head>
     <body>
-        <? 
-        var button_c = "#4284F3";
-        var header_c = "#C9D9F8"; <!--Blue-->
+    <? settings.forEach((setting) =>{?>
+        <? var button_c = "#4284F3";
         
-        var cat_w = 15 ; ?>
-        var act_w = 4 ; ?>
-        var det_w = 15 ; ?>
-        var nom_w = 4 ; ?>
-        var q_w =  ((100-cat_w-act_w-det_w-nom_w)/4)/3; 
         ?>
+
 
         <div><font color="#888888"></font>
             <font color="#888888"></font>
@@ -48,52 +43,72 @@
                                                     <tr style="height:366px">
                                                         <td align="left" style="font-family:Roboto,Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:#444444;font-weight:400;letter-spacing:0px;padding-bottom:0px;width:100%;height:366px">
                                                             <!--Table HERE-->
-                                                            <table style="border-collapse: collapse; width: 100%; height: 330px; border: 1px solid;" border="1" >
-                                                                <tbody>
-                                                                    <tr style="height: 22px; border-color: #ffffff;">
-                                                                        <td style="width: 29.9123%; height: 22px; text-align: center; background-color: <?=header_c?>;" colspan="16"><strong>Roadmap 2022</strong></td>
+                                                            <table style="border-collapse: collapse; width: 100%; height: 100%; border: 1px solid;" border="1" >
+                                                                <tbody>                                                                    
+                                                                    <tr style="height: 22px; border-color: #ffffff; background-color: <?=setting.header_c?>;">
+                                                                        <td style="width: 29.9123%; height: 22px; text-align: center;" colspan="16"><strong>Roadmap 2022</strong></td>
                                                                     </tr>
-                                                                    <tr style="height: 22px; border-color: #ffffff;">
-                                                                        <td style="width: <?=cat_w ?>%; height: 22px; text-align: center; background-color: <?=header_c?>;"><strong>Category</strong></td>
-                                                                        <td style="width: <?=act_w ?>%; height: 22px; text-align: center; background-color: <?=header_c?>;"><strong>Activity</strong></td>
-                                                                        <td style="width: <?=det_w ?>%; height: 22px; text-align: center; background-color: <?=header_c?>;"><strong>Details</strong></td>
-                                                                        <td style="width: <?=q_w ?>%; height: 22px; text-align: center; background-color: <?=header_c?>;" colspan="3"><strong>Q1</strong></td>
-                                                                        <td style="width: <?=q_w ?>%; height: 22px; text-align: center; background-color: <?=header_c?>;" colspan="3"><strong>Q2</strong></td>
-                                                                        <td style="width: <?=q_w ?>%; height: 22px; text-align: center; background-color: <?=header_c?>;" colspan="3"><strong>Q3</strong></td>
-                                                                        <td style="width: <?=q_w ?>%; height: 22px; text-align: center; background-color: <?=header_c?>;" colspan="3"><strong>Q4</strong></td>
-                                                                        <td style="width: <?=nom_w ?>%; height: 22px; text-align: center; background-color: <?=header_c?>;"><strong>Nominate</strong></td>
+                                                                    <tr style="height: 22px; border-color: #ffffff; background-color: <?=setting.header_c?>;">
+                                                                        <td style="width: <?=setting.cat_w ?>%; height: 22px; text-align: center;"><strong>Category</strong></td>
+                                                                        <td style="width: <?=setting.act_w ?>%; height: 22px; text-align: center;"><strong>Activity</strong></td>
+                                                                        <td style="width: <?=setting.det_w ?>%; height: 22px; text-align: center;"><strong>Details</strong></td>
+                                                                        <td style="width: <?=setting.q_w ?>%; height: 22px; text-align: center;" colspan="3"><strong>Q1</strong></td>
+                                                                        <td style="width: <?=setting.q_w ?>%; height: 22px; text-align: center;" colspan="3"><strong>Q2</strong></td>
+                                                                        <td style="width: <?=setting.q_w ?>%; height: 22px; text-align: center;" colspan="3"><strong>Q3</strong></td>
+                                                                        <td style="width: <?=setting.q_w ?>%; height: 22px; text-align: center;" colspan="3"><strong>Q4</strong></td>
+                                                                        <td style="width: <?=setting.nom_w ?>%; height: 22px; text-align: center;"><strong>Nominate</strong></td>
                                                                     </tr>
+                                                                    <!--Bottom border color black-->
+                                                                    <? var alternate = 0; 
+                                                                    var previous = 0; ?>
                                                                     <? categories.forEach((category) =>{?>
                                                                         <? category.activities.forEach((activity, index) =>{
-                                                                            var isLast = index === category.numberOfActivities -1;
-                                                                        ?>
-                                                                    
-                                                                    <?if(isLast){ ?>
-                                                                        <tr style="height: 22px; background-color: #ffffff;  border-bottom-color: #000000;"> 
-                                                                    <? } else { ?>
-                                                                        <tr style="height: 22px; background-color: #ffffff;  border-color: #ecf0f1;"> 
-                                                                    <? } ?>            
-                                                                    
+                                                                            var isLast = index === category.numberOfActivities -1;                                                                            
+                                                                            if(activity.categoryId != previous){
+                                                                                alternate = alternate+1;
+                                                                            }
+                                                                            previous = activity.categoryId;    
+                                                                    ?>
+                                                                    <!--Alternate Google Colors-->
+                                                                    <?if(isLast){ 
+                                                                        <!--If alternate greater than the number of available colors, go back to the first one-->
+                                                                        if(alternate>3 || alternate === 1){ alternate = 1 ?>
+                                                                        <tr style="height: 22px; border-bottom-color: #000000; background-color: <?=setting.google2 ?>;"> 
+                                                                        <? } else if(alternate === 2) { ?>
+                                                                        <tr style="height: 22px; border-bottom-color: #000000; background-color: <?=setting.google3 ?>;">
+                                                                        <? } else if(alternate === 3) { ?>
+                                                                        <tr style="height: 22px; border-bottom-color: #000000; background-color: <?=setting.google4 ?>;"> 
+
+                                                                        <? }} else {
+                                                                            if(alternate === 1){ ?>
+                                                                            <tr style="height: 22px; border-color: #ecf0f1; background-color: <?=setting.google2 ?>;"> 
+                                                                            <? } else if(alternate === 2) { ?>
+                                                                            <tr style="height: 22px; border-color: #ecf0f1; background-color: <?=setting.google3 ?>;">
+                                                                            <? } else if(alternate === 3) { ?>
+                                                                            <tr style="height: 22px; border-color: #ecf0f1; background-color: <?=setting.google4 ?>;">                                                                 
+                                                                        <? }} ?> 
+
                                                                         <?if(!index){ ?>
-                                                                        <td style="width: <?=cat_w ?>%; height: 88px; text-align: left; background-color:  #ffffff; border-bottom-color: #000000;" rowspan="<?= category.numberOfActivities ?>"><?= category.categoryName ?> <br><?= category.targetLevel ?> </td>
+                                                                        <td style="width: <?=setting.cat_w ?>%; height: 88px; text-align: left; border-bottom-color: #000000;" rowspan="<?= category.numberOfActivities ?>"><?= category.categoryName ?> <br><?= category.targetLevel ?> </td>
                                                                         <? } ?>
-                                                                        <td style="width: <?=act_w ?>%; height: 22px; background-color:  #ffffff;"><?= activity.programName ?> 
+                                                                        <td style="width: <?=setting.act_w ?>%; height: 22px;"><?= activity.categoryId ?><?= activity.programName ?>
                                                                             <p><?= activity.googlePOC ?></p>
                                                                         </td>
                                                                         
-                                                                        <td style="width: <?=det_w ?>%; height: 22px; background-color:  #ffffff;">
+                                                                        <td style="width: <?=setting.det_w ?>%; height: 22px;">
                                                                             <p><?= activity.programDescription ?> &amp; 
                                                                                 <a href="https://laclick.com">Link</a>
                                                                             </p>
                                                                         </td>
-                                                                        
+                                                                        <!--ICONS-->
                                                                         <?for (var i =1; i<= 12; i++){ ?>
-                                                                            <td style="width: <?=q_w ?>%; height: 22px; background-color: #ffffff;">
+                                                                            <td style="width: <?=setting.q_w ?>%; height: 22px;">
                                                                             <div style="position:relative;">
                                                                                 <? activity.events.forEach(event =>{
                                                                                     if(event.startMonth === i && event.activityId === "AC13") { ?>
                                                                                     <p style="font-size: 10px;margin-bottom:<?= event.startMargin ?>% ;"><?=event.aejName ?></p>
                                                                                     <? }else if (event.startMonth === i && event.eventType === "Academy"){ ?>
+                                                                                        
                                                                                         <img src="https://www.laclick.com/wp-content/uploads/2021/11/Diamond_30px.png" style="width: 20px; height: 20px; margin-left:<?= event.startMargin ?>% ; position:absolute; top:0; bottom:0">
                                                                                         <? } else if (event.startMonth === i  && event.eventType === "Roundtable") {?>
                                                                                         <img src="https://www.laclick.com/wp-content/uploads/2021/11/Square_30px.png" style="width: 20px; height: 20px; margin-left:<?= event.startMargin ?>% ; position:absolute; top:0; bottom:0">
@@ -109,29 +124,47 @@
                                                                             </td>
                                                                         <? } ?>    
                                                                         
-                                                                        <!--Access button-->
+                                                                        <!--Nominaton button-->
                                                                         
-                                                                        <td style="width: <?=nom_w ?>%; height: 22px; background-color:  #ffffff;">
-                                                                        <p style="font-family: Roboto, Arial, helvetica, sans-serif; font-weight: 300; padding-bottom: 5px; padding-top: 5px; font-size: 15px; line-height: 20px; color: #4d4d4d; text-align: center;"></p>
-                                                                            <? if(activity.nominateURL === ""){ ?>
-                                                                                    <p></p>
-                                                                                    <? } else { ?>                                  
-                                                                                    <a style="color: black; line-height: 32px; text-decoration-line: underline; margin: 0px; width: 100%; padding: 10px; background-color: #ced4d8; border-radius: 12px;" href="<?= activity.nominateURL ?>" target="_blank" rel="noopener">Nominate</a>      
-                                                                            <? } ?>
-                                                                        </p>
+                                                                        <td style="width: <?=setting.nom_w ?>%; height: 22px;">
+                                                                            <p style="font-family: Roboto, Arial, helvetica, sans-serif; font-weight: 300; padding-bottom: 5px; padding-top: 5px; font-size: 15px; line-height: 20px; color: #4d4d4d; text-align: center;"></p>
+                                                                                <? if(activity.nominateURL === ""){ ?>
+                                                                                        <p></p>
+                                                                                        <? } else { ?>                                  
+                                                                                        <a style="color: white; line-height: 32px; text-decoration-line: underline; margin: 0px; width: 100%; padding: 10px; border-radius: 12px; background-color:<?=setting.button?>;" href="<?= activity.nominateURL ?>" target="_blank" rel="noopener">Nominate</a>      
+                                                                                <? } ?>
+                                                                            </p>
                                                                         </td> 
                                                                 
                                                                     </tr>
                                                                     <? }) ?>
                                                                     <?}) ?>
                                                                     
-                                                                    <tr style="height: 22px; background-color: white; border-color: white">
-                                                                        <td style="width: 100%; height: 22px; text-align: left; background-color:white;" colspan="16">
-                                                                        <strong>Legend:</strong>&nbsp;
-                                                                        Academy:&nbsp;<img src="https://www.laclick.com/wp-content/uploads/2021/11/Diamond_30px.png" style="width: 20px; height: 20px; vertical-align: bottom;">&nbsp;
-                                                                        Roundtable:&nbsp;<img src="https://www.laclick.com/wp-content/uploads/2021/11/Square_30px.png" style="width: 20px; height: 20px; vertical-align: bottom;">&nbsp;
-                                                                        Summite:&nbsp;<img src="https://www.laclick.com/wp-content/uploads/2021/11/Trapezium_30px.png" style="width: 20px; height: 20px; vertical-align: bottom;">&nbsp;
-                                                                        Workshop:&nbsp;<img src="https://www.laclick.com/wp-content/uploads/2021/11/Cloud_30px.png" style="width: 20px; height: 20px; vertical-align: bottom;">&nbsp;  
+                                                                    <!--LEGEND-->
+                                                                    <? alternate = alternate+1;
+                                                                    if(alternate === 1 || alternate >3){ alternate = 1 ?>
+                                                                    <tr style="height: 22px; border-color: white; background-color: <?=setting.google2 ?>;">
+                                                                    <? } else if(alternate === 2) { ?>
+                                                                    <tr style="height: 22px; border-color: white; background-color: <?=setting.google3 ?>;">
+                                                                    <? } else if(alternate === 3) { ?>
+                                                                    <tr style="height: 22px; border-color: white; background-color: <?=setting.google4 ?>;">                                                               
+                                                                        <? } ?> 
+                                                                        <td style="width: 100%; height: 22px; text-align: left;" colspan="16">
+                                                                            <strong>Legend:</strong>&nbsp;
+                                                                            <? var previousType = 0; ?>
+                                                                            <? categories.forEach((category) =>{
+                                                                                category.activities.forEach((activity) =>{
+                                                                                    activity.events.forEach(event =>{ 
+
+                                                                                        if(event.eventType != previousType || previousType === 0){ ?>
+                                                                                        <?=event.eventType?><?=[event.eventType,'icon'].join('_')?>:&nbsp;<img src="https://www.laclick.com/wp-content/uploads/2021/11/Diamond_30px.png" style="width: 20px; height: 20px; vertical-align: bottom;">&nbsp;
+                                                                                        <?}
+                                                                                        previousType = event.eventType
+                                                                                        ?>
+
+                                                                                    <?})?>
+                                                                                <?})?>
+                                                                            <?})?>
                                                                         </td>
                                                                     </tr>
                                                                     
@@ -195,5 +228,6 @@
                 </tbody>
             </table>
         </div>
+    <? }) ?>
     </body>
 </html>

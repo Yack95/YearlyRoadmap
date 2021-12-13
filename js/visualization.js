@@ -19,6 +19,8 @@ function doGet() {
   var htmlOutput = HtmlService.createTemplateFromFile("html/table")
   var categories = loadCategories()
   htmlOutput.categories = categories
+  var settings = loadSettings()
+  htmlOutput.settings = settings
   var subject = ['Hello'," ",row[receiverName]].join("");
   
   htmlOutput.fn = row[receiverName];
@@ -46,6 +48,8 @@ function sendTableByEmail(){
     var htmlOutput = HtmlService.createTemplateFromFile("html/table")
     var categories = loadCategories()
     htmlOutput.categories = categories
+    var settings = loadSettings()
+    htmlOutput.settings = settings
     htmlOutput.fn = row[receiverName];
     const emailTemplate = htmlOutput.evaluate().getContent();
     GmailApp.sendEmail(
