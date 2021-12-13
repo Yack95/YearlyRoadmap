@@ -19,6 +19,8 @@ function doGet() {
   var htmlOutput = HtmlService.createTemplateFromFile("html/table")
   var categories = loadCategories()
   htmlOutput.categories = categories
+  var settings = loadSettings()
+  htmlOutput.settings = settings
   var subject = ['Hello'," ",row[receiverName]].join("");
   
   htmlOutput.fn = row[receiverName];
@@ -26,7 +28,7 @@ function doGet() {
 
   var htmlMessage = htmlOutput.evaluate();
  
-  htmlMessage.setWidth(1300)
+  htmlMessage.setWidth(1800)
   htmlMessage.setHeight(1000)
   SpreadsheetApp.getUi()
   .showModalDialog(htmlMessage, subject)
@@ -46,6 +48,8 @@ function sendTableByEmail(){
     var htmlOutput = HtmlService.createTemplateFromFile("html/table")
     var categories = loadCategories()
     htmlOutput.categories = categories
+    var settings = loadSettings()
+    htmlOutput.settings = settings
     htmlOutput.fn = row[receiverName];
     const emailTemplate = htmlOutput.evaluate().getContent();
     GmailApp.sendEmail(

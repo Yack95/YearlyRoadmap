@@ -3,102 +3,231 @@
   <head>
     <base target="_top">
   </head>
-  <body>
-    <p>Hello&nbsp;<span><?= fn?></span> <br> This is the table with the latest updates.<br> Best,
-    </p>
-    <table style="border-collapse: collapse; width: 100%; height: 330px; background-color: #ced4d9; border: 1px solid;" border="1" >
+    <body>
+    <? settings.forEach((setting) =>{?>
+        <? var button_c = "#4284F3";
         
-        <tbody>
-            
-            <tr style="height: 22px; background-color: #c0e5df; border-color: #ffffff;">
-                <td style="width: 29.9123%; height: 22px; text-align: center; background-color: #ced4d9;" colspan="16"><strong>Roadmap 2022</strong></td>
-            </tr>
-            <tr style="height: 22px; background-color: #c0e5df; border-color: #ffffff;">
-                <td style="width: 15%; height: 22px; text-align: center; background-color: #ced4d9;"><strong>Category</strong></td>
-                <td style="width: 5%; height: 22px; text-align: center; background-color: #ced4d9;"><strong>Activity</strong></td>
-                <td style="width: 15%; height: 22px; text-align: center; background-color: #ced4d9;"><strong>Details</strong></td>
-                <td style="width: 5%; height: 22px; text-align: center; background-color: #ced4d9;" colspan="3"><strong>Q1</strong></td>
-                <td style="width: 5%; height: 22px; text-align: center; background-color: #ced4d9;" colspan="3"><strong>Q2</strong></td>
-                <td style="width: 5%; height: 22px; text-align: center; background-color: #ced4d9;" colspan="3"><strong>Q3</strong></td>
-                <td style="width: 5%; height: 22px; text-align: center; background-color: #ced4d9;" colspan="3"><strong>Q4</strong></td>
-                <td style="width: 5%; height: 22px; text-align: center; background-color: #ced4d9;"><strong>Nominate</strong></td>
-            </tr>
-            <? categories.forEach((category) =>{?>
-                <? category.activities.forEach((activity, index) =>{
-                    var isLast = index === category.numberOfActivities -1;
-                    
-                    ?>
-            
-            <?if(isLast){ ?>
-                <tr style="height: 22px; background-color: #ffffff;  border-bottom-color: #000000;"> 
-            <? } else { ?>
-                <tr style="height: 22px; background-color: #ffffff;  border-color: #ecf0f1;"> 
-            <? } ?>            
-            
-                <?if(!index){ ?>
-                <td style="width: 15%; height: 88px; text-align: left; background-color:  #ffffff; border-bottom-color: #000000;" rowspan="<?= category.numberOfActivities ?>"><?= category.categoryName ?> <br><?= category.targetLevel ?> </td>
-                <? } ?>
-                <td style="width: 5%; height: 22px; background-color:  #ffffff;"><?= activity.programName ?> 
-                    <p><?= activity.googlePOC ?></p>
-                </td>
-                
-                <td style="width: 15%; height: 22px; background-color:  #ffffff;">
-                    <p><?= activity.programDescription ?> &amp; 
-                        <a href="https://laclick.com">Link</a>
-                    </p>
-                </td>
-                
-                <?for (var i =1; i<= 12; i++){ ?>
-                    <td style="width: 5%; height: 22px; background-color: #ffffff;">
-                     <div style="position:relative;">
-                        <? activity.events.forEach(event =>{
-                            if(event.startMonth === i && event.activityId === "AC13") { ?>
-                            <p style="font-size: 10px;margin-bottom:<?= event.startMargin ?>% ;"><?=event.aejName ?></p>
-                            <? }else if (event.startMonth === i && event.eventType === "Academy"){ ?>
-                                <img src="https://www.laclick.com/wp-content/uploads/2021/11/Diamond_30px.png" style="width: 20px; height: 20px; margin-left:<?= event.startMargin ?>% ; position:absolute; top:0; bottom:0">
-                                <? } else if (event.startMonth === i  && event.eventType === "Roundtable") {?>
-                                 <img src="https://www.laclick.com/wp-content/uploads/2021/11/Square_30px.png" style="width: 20px; height: 20px; margin-left:<?= event.startMargin ?>% ; position:absolute; top:0; bottom:0">
-                            <? } else if (event.startMonth === i  && event.eventType === "Summit") {?>
-                                 <img src="https://www.laclick.com/wp-content/uploads/2021/11/Trapezium_30px.png" style="width: 20px; height: 20px; margin-left:<?= event.startMargin ?>% ; position:absolute; top:0; bottom:0">
-                            <? } else if (event.startMonth === i  && event.eventType === "Workshop") {?>
-                                 <img src="https://www.laclick.com/wp-content/uploads/2021/11/Cloud_30px.png" style="width: 20px; height: 20px; margin-left:<?= event.startMargin ?>% ; position:absolute; top:0; bottom:0">
-                            <? } else if (event.startMonth !== i*3) {?>
-                                
-                            <? }?>
-                        <? }) ?>
-                    </div>
-                    </td>
-                <? } ?>    
-                
-                <!--Access button-->
-                
-                <td style="width: 5%; height: 22px; background-color:  #ffffff;">
-                <p style="font-family: Roboto, Arial, helvetica, sans-serif; font-weight: 300; padding-bottom: 5px; padding-top: 5px; font-size: 15px; line-height: 20px; color: #4d4d4d; text-align: center;"></p>
-                    <? if(activity.nominateURL === ""){ ?>
-                            <p></p>
-                            <? } else { ?>                                  
-                            <a style="color: black; line-height: 32px; text-decoration-line: underline; margin: 0px; width: 100%; padding: 10px; background-color: #ced4d8; border-radius: 12px;" href="<?= activity.nominateURL ?>" target="_blank" rel="noopener">Nominate</a>      
-                    <? } ?>
-                </p>
-                </td> 
-           
-            </tr>
-            <? }) ?>
-            <?}) ?>
-            
-            <tr style="height: 22px; background-color: white; border-color: white">
-                <td style="width: 29.9123%; height: 22px; text-align: left; background-color:white;" colspan="16">
-                  <strong>Legend:</strong>&nbsp;
-                  Academy:&nbsp;<img src="https://www.laclick.com/wp-content/uploads/2021/11/Diamond_30px.png" style="width: 20px; height: 20px; vertical-align: bottom;">&nbsp;
-                  Roundtable:&nbsp;<img src="https://www.laclick.com/wp-content/uploads/2021/11/Square_30px.png" style="width: 20px; height: 20px; vertical-align: bottom;">&nbsp;
-                  Summite:&nbsp;<img src="https://www.laclick.com/wp-content/uploads/2021/11/Trapezium_30px.png" style="width: 20px; height: 20px; vertical-align: bottom;">&nbsp;
-                  Workshop:&nbsp;<img src="https://www.laclick.com/wp-content/uploads/2021/11/Cloud_30px.png" style="width: 20px; height: 20px; vertical-align: bottom;">&nbsp;  
-                </td>
-            </tr>
-            
-        </tbody>
-    
-    </table>
-    
-  </body>
+        ?>
+
+
+        <div><font color="#888888"></font>
+            <font color="#888888"></font>
+            <font color="#888888"></font>
+            <table border="0" width= "100%" height= "100%">
+                <tbody>
+                    <tr>
+                        <td align="center" bgcolor="#F5F5F5" style="background-color:#f5f5f5; padding: 10px 10px 10px 10px;">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td align="center" bgcolor="#FFFFFF" style="padding:20px 30px;background-color:#ffffff;width:100%;">
+                                            <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:780px" width="100%">
+                                                <tbody>
+                                                    <tr>
+                                                        <td align="left"><img alt="Google" src="https://ci3.googleusercontent.com/proxy/2UEANI4jRPR05q1N3JGoHjdGv7sRP62HaAu8vMCRLdNm3LOPsS-ssukxnmm8DklfTCwVJBNQT4Wb16HcY6fpXwQpvHk9m9v4X9M7G3ZvHyJbL_0how8fL5fJygEq16GCEEzuHo6I=s0-d-e1-ft#https://www.gstatic.com/images/branding/googlelogo/1x/googlelogo_color_120x48dp.png" style="display:block;border:0px" width="120" class="CToWUd"></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:100%;height:679px" width="100%">
+                                                <tbody>
+                                                    <!--Title-->
+                                                    <tr style="height:30px">
+                                                        <td align="left" style="font-family:'Google Sans',Arial,Helvetica,sans-serif;font-size:28px;font-weight:bold;line-height:32px;color:#444444;padding-top:20px;padding-bottom:8px;width:100%;height:30px;text-align:center"><span>Welcome to the 2022 Roadmap</span></td>
+                                                    </tr>
+                                                    <!--Welcome Message-->
+                                                    <tr style="height:116px">
+                                                        <td align="left" style="font-family:Roboto,Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:#444444;font-weight:400;letter-spacing:0px;padding-bottom:16px;width:100%;height:88px">
+                                                            <p style="text-align:justify"><br>Hello <br><br>This is the table with the latest updates.</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr style="height:366px">
+                                                        <td align="left" style="font-family:Roboto,Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:#444444;font-weight:400;letter-spacing:0px;padding-bottom:0px;width:100%;height:366px">
+                                                            <!--Table HERE-->
+                                                            <table style="border-collapse: collapse; width: 100%; height: 100%; border: 1px solid;" border="1" >
+                                                                <tbody>                                                                    
+                                                                    <tr style="height: 22px; border-color: #ffffff; background-color: <?=setting.header_c?>;">
+                                                                        <td style="width: 29.9123%; height: 22px; text-align: center;" colspan="16"><strong>Roadmap 2022</strong></td>
+                                                                    </tr>
+                                                                    <tr style="height: 22px; border-color: #ffffff; background-color: <?=setting.header_c?>;">
+                                                                        <td style="width: <?=setting.cat_w ?>%; height: 22px; text-align: center;"><strong>Category</strong></td>
+                                                                        <td style="width: <?=setting.act_w ?>%; height: 22px; text-align: center;"><strong>Activity</strong></td>
+                                                                        <td style="width: <?=setting.det_w ?>%; height: 22px; text-align: center;"><strong>Details</strong></td>
+                                                                        <td style="width: <?=setting.q_w ?>%; height: 22px; text-align: center;" colspan="3"><strong>Q1</strong></td>
+                                                                        <td style="width: <?=setting.q_w ?>%; height: 22px; text-align: center;" colspan="3"><strong>Q2</strong></td>
+                                                                        <td style="width: <?=setting.q_w ?>%; height: 22px; text-align: center;" colspan="3"><strong>Q3</strong></td>
+                                                                        <td style="width: <?=setting.q_w ?>%; height: 22px; text-align: center;" colspan="3"><strong>Q4</strong></td>
+                                                                        <td style="width: <?=setting.nom_w ?>%; height: 22px; text-align: center;"><strong>Nominate</strong></td>
+                                                                    </tr>
+                                                                    <!--Bottom border color black-->
+                                                                    <? var alternate = 0; 
+                                                                    var previous = 0; ?>
+                                                                    <? categories.forEach((category) =>{?>
+                                                                        <? category.activities.forEach((activity, index) =>{
+                                                                            var isLast = index === category.numberOfActivities -1;                                                                            
+                                                                            if(activity.categoryId != previous){
+                                                                                alternate = alternate+1;
+                                                                            }
+                                                                            previous = activity.categoryId;    
+                                                                    ?>
+                                                                    <!--Alternate Google Colors-->
+                                                                    <?if(isLast){ 
+                                                                        <!--If alternate greater than the number of available colors, go back to the first one-->
+                                                                        if(alternate>3 || alternate === 1){ alternate = 1 ?>
+                                                                        <tr style="height: 22px; border-bottom-color: #000000; background-color: <?=setting.google2 ?>;"> 
+                                                                        <? } else if(alternate === 2) { ?>
+                                                                        <tr style="height: 22px; border-bottom-color: #000000; background-color: <?=setting.google3 ?>;">
+                                                                        <? } else if(alternate === 3) { ?>
+                                                                        <tr style="height: 22px; border-bottom-color: #000000; background-color: <?=setting.google4 ?>;"> 
+
+                                                                        <? }} else {
+                                                                            if(alternate === 1){ ?>
+                                                                            <tr style="height: 22px; border-color: #ecf0f1; background-color: <?=setting.google2 ?>;"> 
+                                                                            <? } else if(alternate === 2) { ?>
+                                                                            <tr style="height: 22px; border-color: #ecf0f1; background-color: <?=setting.google3 ?>;">
+                                                                            <? } else if(alternate === 3) { ?>
+                                                                            <tr style="height: 22px; border-color: #ecf0f1; background-color: <?=setting.google4 ?>;">                                                                 
+                                                                        <? }} ?> 
+
+                                                                        <?if(!index){ ?>
+                                                                        <td style="width: <?=setting.cat_w ?>%; height: 88px; text-align: left; border-bottom-color: #000000;" rowspan="<?= category.numberOfActivities ?>"><?= category.categoryName ?> <br><?= category.targetLevel ?> </td>
+                                                                        <? } ?>
+                                                                        <td style="width: <?=setting.act_w ?>%; height: 22px;"><?= activity.categoryId ?><?= activity.programName ?>
+                                                                            <p><?= activity.googlePOC ?></p>
+                                                                        </td>
+                                                                        
+                                                                        <td style="width: <?=setting.det_w ?>%; height: 22px;">
+                                                                            <p><?= activity.programDescription ?> &amp; 
+                                                                                <a href="https://laclick.com">Link</a>
+                                                                            </p>
+                                                                        </td>
+                                                                        <!--ICONS-->
+                                                                        <?for (var i =1; i<= 12; i++){ ?>
+                                                                            <td style="width: <?=setting.q_w ?>%; height: 22px;">
+                                                                            <div style="position:relative;">
+                                                                                <? activity.events.forEach(event =>{
+                                                                                    if(event.startMonth === i && event.activityId === "AC13") { ?>
+                                                                                    <p style="font-size: 10px;margin-bottom:<?= event.startMargin ?>% ;"><?=event.aejName ?></p>
+                                                                                    <? }else if (event.startMonth === i && event.eventType === "Academy"){ ?>
+                                                                                        
+                                                                                        <img src="https://www.laclick.com/wp-content/uploads/2021/11/Diamond_30px.png" style="width: 20px; height: 20px; margin-left:<?= event.startMargin ?>% ; position:absolute; top:0; bottom:0">
+                                                                                        <? } else if (event.startMonth === i  && event.eventType === "Roundtable") {?>
+                                                                                        <img src="https://www.laclick.com/wp-content/uploads/2021/11/Square_30px.png" style="width: 20px; height: 20px; margin-left:<?= event.startMargin ?>% ; position:absolute; top:0; bottom:0">
+                                                                                    <? } else if (event.startMonth === i  && event.eventType === "Summit") {?>
+                                                                                        <img src="https://www.laclick.com/wp-content/uploads/2021/11/Trapezium_30px.png" style="width: 20px; height: 20px; margin-left:<?= event.startMargin ?>% ; position:absolute; top:0; bottom:0">
+                                                                                    <? } else if (event.startMonth === i  && event.eventType === "Workshop") {?>
+                                                                                        <img src="https://www.laclick.com/wp-content/uploads/2021/11/Cloud_30px.png" style="width: 20px; height: 20px; margin-left:<?= event.startMargin ?>% ; position:absolute; top:0; bottom:0">
+                                                                                    <? } else if (event.startMonth !== i*3) {?>
+                                                                                        
+                                                                                    <? }?>
+                                                                                <? }) ?>
+                                                                            </div>
+                                                                            </td>
+                                                                        <? } ?>    
+                                                                        
+                                                                        <!--Nominaton button-->
+                                                                        
+                                                                        <td style="width: <?=setting.nom_w ?>%; height: 22px;">
+                                                                            <p style="font-family: Roboto, Arial, helvetica, sans-serif; font-weight: 300; padding-bottom: 5px; padding-top: 5px; font-size: 15px; line-height: 20px; color: #4d4d4d; text-align: center;"></p>
+                                                                                <? if(activity.nominateURL === ""){ ?>
+                                                                                        <p></p>
+                                                                                        <? } else { ?>                                  
+                                                                                        <a style="color: white; line-height: 32px; text-decoration-line: underline; margin: 0px; width: 100%; padding: 10px; border-radius: 12px; background-color:<?=setting.button?>;" href="<?= activity.nominateURL ?>" target="_blank" rel="noopener">Nominate</a>      
+                                                                                <? } ?>
+                                                                            </p>
+                                                                        </td> 
+                                                                
+                                                                    </tr>
+                                                                    <? }) ?>
+                                                                    <?}) ?>
+                                                                    
+                                                                    <!--LEGEND-->
+                                                                    <? alternate = alternate+1;
+                                                                    if(alternate === 1 || alternate >3){ alternate = 1 ?>
+                                                                    <tr style="height: 22px; border-color: white; background-color: <?=setting.google2 ?>;">
+                                                                    <? } else if(alternate === 2) { ?>
+                                                                    <tr style="height: 22px; border-color: white; background-color: <?=setting.google3 ?>;">
+                                                                    <? } else if(alternate === 3) { ?>
+                                                                    <tr style="height: 22px; border-color: white; background-color: <?=setting.google4 ?>;">                                                               
+                                                                        <? } ?> 
+                                                                        <td style="width: 100%; height: 22px; text-align: left;" colspan="16">
+                                                                            <strong>Legend:</strong>&nbsp;
+                                                                            <? var previousType = 0; ?>
+                                                                            <? categories.forEach((category) =>{
+                                                                                category.activities.forEach((activity) =>{
+                                                                                    activity.events.forEach(event =>{ 
+
+                                                                                        if(event.eventType != previousType || previousType === 0){ ?>
+                                                                                        <?=event.eventType?><?=[event.eventType,'icon'].join('_')?>:&nbsp;<img src="https://www.laclick.com/wp-content/uploads/2021/11/Diamond_30px.png" style="width: 20px; height: 20px; vertical-align: bottom;">&nbsp;
+                                                                                        <?}
+                                                                                        previousType = event.eventType
+                                                                                        ?>
+
+                                                                                    <?})?>
+                                                                                <?})?>
+                                                                            <?})?>
+                                                                        </td>
+                                                                    </tr>
+                                                                    
+                                                                </tbody>
+                                                            
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+
+                                                    <!--Goodbye Message HERE-->
+                                                    <tr style="height:116px">
+                                                        <td align="left" style="font-family:Roboto,Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:#444444;font-weight:400;letter-spacing:0px;padding-bottom:16px;width:100%;height:88px">
+                                                            <p style="text-align:justify"><br>For further inquiries please contact <a href="mailto:TBD@google.com" rel="noopener" style="color:#4285f4" target="_blank">TBD@google.com</a>. <br><br>We look forward to connecting with you.&nbsp;&nbsp;</p>
+                                                            <p style="text-align:left">Best regards,  <br><br><strong>TBD</strong> <br>Director, Marketing <br> DACH, Google</p>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" bgcolor="#F5F5F8" style="padding:15px 0;background-color:#f5f5f8">
+                                            <table align="center" border="0" cellpadding="0" cellspacing="0" style="height:123px;width:100%" width="100%">
+                                                <tbody>
+                                                    <!--Google Logo Grey-->
+                                                    <tr style="height:26px">
+                                                        <td align="center" style="height:26px"><img alt="Google logo" src="https://ci5.googleusercontent.com/proxy/8lDzJUkh713bQDZXiKuv1UCESNwZHVODhuKoHmC58ampSRlGBkY-K3fKctXMgozmtNFzFR3wzwv_2xKgZ-0xMKtOdP61rhkPVdjyIxZI5T0uzuI=s0-d-e1-ft#http://www.gstatic.com/gmktg/logo/google_footer_logo_updated.png" style="display:block;border:0px" width="76" class="CToWUd"></td>
+                                                    </tr>
+                                                    <!--Why you have recieved this email message-->
+                                                    <tr style="height:47px">
+                                                        <td align="left" style="font-family:Roboto,Arial,Helvetica,sans-serif;font-size:12px;line-height:16px;color:#999999;font-weight:400;letter-spacing:0px;padding-bottom:15px;height:47px">
+                                                            <p>Sie haben diese E-Mail erhalten, weil Sie unser Kontakt für Google bezogene Veranstaltungen sind. Wenn Sie keine weiteren E-Mails zu dieser Veranstaltung erhalten möchten, können Sie sich abmelden. Es gilt die <a href="https://policies.google.com/privacy?hl=de" rel="noopener" style="color:#999999" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://policies.google.com/privacy?hl%3Dde&amp;source=gmail&amp;ust=1639469685730000&amp;usg=AOvVaw0rZML6RgxZQB6eTECjP6wQ">Google Privacy Policy</a>.&nbsp;</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr style="height:2px">
+                                                        <td align="center" style="font-family:Roboto,Arial,Helvetica,sans-serif;font-size:2px;font-weight:400;line-height:2px;color:#999999;padding-top:30px;padding-bottom:20px;height:2px"><img src="https://ci6.googleusercontent.com/proxy/0cV5Vp3Df7KNTNFC4Ms9QIOhmv-gpVd-JwBfUNaDRWYOaRD9c7TwpCLnmJ-GCGM4JQGmihnNA92vudr6g82L=s0-d-e1-ft#http://dummyimage.com/30X2/dcdcdc/dcdcdc.png" style="display:inline-block;border:0px" width="30" class="CToWUd"></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <font color="#888888"></font>
+                            <font color="#888888"></font>
+                            <font color="#888888"></font>
+                            <table cellpadding="0" cellspacing="0" style="border:0;border-collapse:collapse;color:#4d4d4d;font-family:'Roboto',Arial,Helvetica,sans-serif;font-size:1px">
+                                <tbody>
+                                    <tr>
+                                        <td align="left" style="line-height:1px;margin:0;padding:0;text-align:left"><img height="1" src="https://ci5.googleusercontent.com/proxy/BjgsrIGNHiDeRfgKWiVpLOLUGhVA38UybZAWWuhGoUj0Zey7F3sNvqFIHo8wXUZOGGyo4YBrNesIPqYS_YfOAu3kXzHZHpMfJjgT=s0-d-e1-ft#http://www.gstatic.com/gmktg/dub-img/1x1_transparent.png" style="border:none;display:block;outline:none" width="100" class="CToWUd"></td>
+                                        <td align="left" style="line-height:1px;margin:0;padding:0;text-align:left"><img height="1" src="https://ci5.googleusercontent.com/proxy/BjgsrIGNHiDeRfgKWiVpLOLUGhVA38UybZAWWuhGoUj0Zey7F3sNvqFIHo8wXUZOGGyo4YBrNesIPqYS_YfOAu3kXzHZHpMfJjgT=s0-d-e1-ft#http://www.gstatic.com/gmktg/dub-img/1x1_transparent.png" style="border:none;display:block;outline:none" width="100" class="CToWUd"></td>
+                                        <td align="left" style="line-height:1px;margin:0;padding:0;text-align:left"><img height="1" src="https://ci5.googleusercontent.com/proxy/BjgsrIGNHiDeRfgKWiVpLOLUGhVA38UybZAWWuhGoUj0Zey7F3sNvqFIHo8wXUZOGGyo4YBrNesIPqYS_YfOAu3kXzHZHpMfJjgT=s0-d-e1-ft#http://www.gstatic.com/gmktg/dub-img/1x1_transparent.png" style="border:none;display:block;outline:none" width="100" class="CToWUd"></td>
+                                        <td align="left" style="line-height:1px;margin:0;padding:0;text-align:left"><img height="1" src="https://ci5.googleusercontent.com/proxy/BjgsrIGNHiDeRfgKWiVpLOLUGhVA38UybZAWWuhGoUj0Zey7F3sNvqFIHo8wXUZOGGyo4YBrNesIPqYS_YfOAu3kXzHZHpMfJjgT=s0-d-e1-ft#http://www.gstatic.com/gmktg/dub-img/1x1_transparent.png" style="border:none;display:block;outline:none" width="100" class="CToWUd"></td>
+                                        <td align="left" style="line-height:1px;margin:0;padding:0;text-align:left"><img height="1" src="https://ci5.googleusercontent.com/proxy/BjgsrIGNHiDeRfgKWiVpLOLUGhVA38UybZAWWuhGoUj0Zey7F3sNvqFIHo8wXUZOGGyo4YBrNesIPqYS_YfOAu3kXzHZHpMfJjgT=s0-d-e1-ft#http://www.gstatic.com/gmktg/dub-img/1x1_transparent.png" style="border:none;display:block;outline:none" width="100" class="CToWUd"></td>
+                                        <td align="left" style="line-height:1px;margin:0;padding:0;text-align:left"><img height="1" src="https://ci5.googleusercontent.com/proxy/BjgsrIGNHiDeRfgKWiVpLOLUGhVA38UybZAWWuhGoUj0Zey7F3sNvqFIHo8wXUZOGGyo4YBrNesIPqYS_YfOAu3kXzHZHpMfJjgT=s0-d-e1-ft#http://www.gstatic.com/gmktg/dub-img/1x1_transparent.png" style="border:none;display:block;outline:none" width="100" class="CToWUd"></td>
+                                    </tr>
+                                </tbody>
+                            </table><font color="#888888"></font>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    <? }) ?>
+    </body>
 </html>
