@@ -26,7 +26,7 @@ function doGet() {
 
   var htmlMessage = htmlOutput.evaluate();
  
-  htmlMessage.setWidth(1300)
+  htmlMessage.setWidth(1800)
   htmlMessage.setHeight(1000)
   SpreadsheetApp.getUi()
   .showModalDialog(htmlMessage, subject)
