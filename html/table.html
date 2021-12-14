@@ -5,10 +5,6 @@
   </head>
     <body>
     <? settings.forEach((setting) =>{?>
-        <? var button_c = "#4284F3";
-        
-        ?>
-
 
         <div><font color="#888888"></font>
             <font color="#888888"></font>
@@ -91,47 +87,48 @@
                                                                         <?if(!index){ ?>
                                                                         <td style="width: <?=setting.cat_w ?>%; height: 88px; text-align: left; border-bottom-color: #000000;" rowspan="<?= category.numberOfActivities ?>"><?= category.categoryName ?> <br><?= category.targetLevel ?> </td>
                                                                         <? } ?>
-                                                                        <td style="width: <?=setting.act_w ?>%; height: 22px;"><?= activity.categoryId ?><?= activity.programName ?>
+                                                                        <td style="width: <?=setting.act_w ?>%; height: 22px;"><?= activity.programName ?>
                                                                             <p><?= activity.googlePOC ?></p>
                                                                         </td>
                                                                         
                                                                         <td style="width: <?=setting.det_w ?>%; height: 22px;">
-                                                                            <p><?= activity.programDescription ?> &amp; 
-                                                                                <a href="https://laclick.com">Link</a>
+                                                                            <p><?= activity.programDescription ?> <br>More details:
+                                                                                <a href="<?=setting.onePager ?>">One Pager</a>
                                                                             </p>
                                                                         </td>
                                                                         <!--ICONS-->
                                                                         <?for (var i =1; i<= 12; i++){ ?>
-                                                                            <td style="width: <?=setting.q_w ?>%; height: 22px;">
+                                                                        <td style="width: <?=setting.q_w ?>%; vertical-align: middle; padding-bottom: 20px;">
                                                                             <div style="position:relative;">
                                                                                 <? activity.events.forEach(event =>{
                                                                                     if(event.startMonth === i && event.activityId === "AC13") { ?>
-                                                                                    <p style="font-size: 10px;margin-bottom:<?= event.startMargin ?>% ;"><?=event.aejName ?></p>
+                                                                                    <p style="font-size: 10px;margin-bottom:<?= event.startMargin ?>% ; padding-top: 50px"><?=event.aejName ?></p>
                                                                                     <? }else if (event.startMonth === i && event.eventType === "Academy"){ ?>
-                                                                                        
-                                                                                        <img src="https://www.laclick.com/wp-content/uploads/2021/11/Diamond_30px.png" style="width: 20px; height: 20px; margin-left:<?= event.startMargin ?>% ; position:absolute; top:0; bottom:0">
-                                                                                        <? } else if (event.startMonth === i  && event.eventType === "Roundtable") {?>
-                                                                                        <img src="https://www.laclick.com/wp-content/uploads/2021/11/Square_30px.png" style="width: 20px; height: 20px; margin-left:<?= event.startMargin ?>% ; position:absolute; top:0; bottom:0">
+                                                                                        <img src="<?=setting.academy_icon ?>" style="width: 20px; height: 20px; margin-left:<?= event.startMargin ?>% ; position:absolute; top:0; bottom:0;">
                                                                                     <? } else if (event.startMonth === i  && event.eventType === "Summit") {?>
-                                                                                        <img src="https://www.laclick.com/wp-content/uploads/2021/11/Trapezium_30px.png" style="width: 20px; height: 20px; margin-left:<?= event.startMargin ?>% ; position:absolute; top:0; bottom:0">
-                                                                                    <? } else if (event.startMonth === i  && event.eventType === "Workshop") {?>
-                                                                                        <img src="https://www.laclick.com/wp-content/uploads/2021/11/Cloud_30px.png" style="width: 20px; height: 20px; margin-left:<?= event.startMargin ?>% ; position:absolute; top:0; bottom:0">
+                                                                                        <img src="<?=setting.summit_icon ?>" style="width: 20px; height: 20px; margin-left:<?= event.startMargin ?>% ; position:absolute; top:0; bottom:0;">
+                                                                                    <? } else if (event.startMonth === i  && event.eventType === "Welcome") {?>
+                                                                                        <img src="<?=setting.welcome_icon ?>" style="width: 20px; height: 20px; margin-left:<?= event.startMargin ?>% ; position:absolute; top:0; bottom:0;">
+                                                                                    <? } else if (event.startMonth === i  && event.eventType === "Roundtable") {?>
+                                                                                        <img src="<?=setting.roundtable_icon ?>" style="width: 20px; height: 20px; margin-left:<?= event.startMargin ?>% ; position:absolute; top:0; bottom:0;"> 
+                                                                                    <? } else if (event.startMonth === i  && event.eventType === "Graduation") {?>
+                                                                                        <img src="<?=setting.graduation_icon ?>" style="width: 20px; height: 20px; margin-left:<?= event.startMargin ?>% ; position:absolute; top:0; bottom:0;">     
                                                                                     <? } else if (event.startMonth !== i*3) {?>
-                                                                                        
+                                                                                    
                                                                                     <? }?>
                                                                                 <? }) ?>
                                                                             </div>
-                                                                            </td>
-                                                                        <? } ?>    
+                                                                        </td>
+                                                                        <? } ?>
                                                                         
                                                                         <!--Nominaton button-->
                                                                         
                                                                         <td style="width: <?=setting.nom_w ?>%; height: 22px;">
-                                                                            <p style="font-family: Roboto, Arial, helvetica, sans-serif; font-weight: 300; padding-bottom: 5px; padding-top: 5px; font-size: 15px; line-height: 20px; color: #4d4d4d; text-align: center;"></p>
+                                                                            <p style="font-family: Roboto, Arial, helvetica, sans-serif; font-weight: 300; font-size: 15px; line-height: 20px; color: #4d4d4d; text-align: center;"></p>
                                                                                 <? if(activity.nominateURL === ""){ ?>
                                                                                         <p></p>
                                                                                         <? } else { ?>                                  
-                                                                                        <a style="color: white; line-height: 32px; text-decoration-line: underline; margin: 0px; width: 100%; padding: 10px; border-radius: 12px; background-color:<?=setting.button?>;" href="<?= activity.nominateURL ?>" target="_blank" rel="noopener">Nominate</a>      
+                                                                                        <a style="vertical-align: middle; color: white; line-height: 32px; text-decoration-line: underline; width: 100%; padding: 10px; border-radius: 12px; background-color:<?=setting.button?>;" href="<?= activity.nominateURL ?>" target="_blank" rel="noopener">Nominate</a>      
                                                                                 <? } ?>
                                                                             </p>
                                                                         </td> 
@@ -151,20 +148,11 @@
                                                                         <? } ?> 
                                                                         <td style="width: 100%; height: 22px; text-align: left;" colspan="16">
                                                                             <strong>Legend:</strong>&nbsp;
-                                                                            <? var previousType = 0; ?>
-                                                                            <? categories.forEach((category) =>{
-                                                                                category.activities.forEach((activity) =>{
-                                                                                    activity.events.forEach(event =>{ 
-
-                                                                                        if(event.eventType != previousType || previousType === 0){ ?>
-                                                                                        <?=event.eventType?><?=[event.eventType,'icon'].join('_')?>:&nbsp;<img src="https://www.laclick.com/wp-content/uploads/2021/11/Diamond_30px.png" style="width: 20px; height: 20px; vertical-align: bottom;">&nbsp;
-                                                                                        <?}
-                                                                                        previousType = event.eventType
-                                                                                        ?>
-
-                                                                                    <?})?>
-                                                                                <?})?>
-                                                                            <?})?>
+                                                                            Academy:&nbsp;<img src="<?=setting.academy_icon ?>" style="width: 20px; height: 20px; vertical-align: bottom;">&nbsp;
+                                                                            Summit:&nbsp;<img src="<?=setting.summit_icon ?>" style="width: 20px; height: 20px; vertical-align: bottom;">&nbsp;
+                                                                            Welcome:&nbsp;<img src="<?=setting.welcome_icon ?>" style="width: 20px; height: 20px; vertical-align: bottom;">&nbsp;
+                                                                            Roundtable:&nbsp;<img src="<?=setting.roundtable_icon ?>" style="width: 20px; height: 20px; vertical-align: bottom;">&nbsp;
+                                                                            Graduation:&nbsp;<img src="<?=setting.graduation_icon ?>" style="width: 20px; height: 20px; vertical-align: bottom;">&nbsp;
                                                                         </td>
                                                                     </tr>
                                                                     
