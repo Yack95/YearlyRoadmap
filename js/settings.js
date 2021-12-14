@@ -26,9 +26,9 @@ function loadSettings(){
 
         //Icons
         const academy_icon = "https://www.laclick.com/wp-content/uploads/2021/11/Diamond_30px.png";
-        const welcome_icon = "https://www.laclick.com/wp-content/uploads/2021/11/Square_30px.png";
-        const roundtable_icon = "https://www.laclick.com/wp-content/uploads/2021/11/Trapezium_30px.png";
-        const graduation_icon = "https://www.laclick.com/wp-content/uploads/2021/11/Cloud_30px.png";
+        const welcome_icon = "https://www.laclick.com/wp-content/uploads/2021/12/baseline_play_arrow_black_24dp.png";
+        const roundtable_icon = "https://www.laclick.com/wp-content/uploads/2021/12/baseline_double_arrow_black_24dp.png";
+        const graduation_icon = "https://www.laclick.com/wp-content/uploads/2021/12/baseline_where_to_vote_black_24dp.png";
         const summit_icon = "https://www.laclick.com/wp-content/uploads/2021/11/Cloud_30px.png";
 
         //OnePager
