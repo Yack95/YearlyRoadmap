@@ -11,19 +11,28 @@ function loadSettings(){
         const q_w = ((100-cat_w-det_w-act_w-nom_w)/4)/3;
 
         //Colors
+        const header_c = "#CCCCCC"; 
+        const google2 = "#FFFFFF"; 
+        const google3 = "#FFFFFF"; 
+        const google4 = "#FFFFFF"; 
+        const button = "#4285f4";
+        /*
         const header_c = "#C9D9F8"; //blue
         const google2 = "#f9ccd5"; //red
         const google3 = "#f4f1b2"; //yellow
         const google4 = "#cef2cb"; //green
         const button = "#4285f4" //blue
+        */
 
         //Icons
-        const Academy_icon = "https://www.laclick.com/wp-content/uploads/2021/11/Diamond_30px.png";
-        const roundtable = "";
-        const summit = "";
-        const workshop = "";
+        const academy_icon = "https://www.laclick.com/wp-content/uploads/2021/11/Diamond_30px.png";
+        const welcome_icon = "https://www.laclick.com/wp-content/uploads/2021/11/Square_30px.png";
+        const roundtable_icon = "https://www.laclick.com/wp-content/uploads/2021/11/Trapezium_30px.png";
+        const graduation_icon = "https://www.laclick.com/wp-content/uploads/2021/11/Cloud_30px.png";
+        const summit_icon = "https://www.laclick.com/wp-content/uploads/2021/11/Cloud_30px.png";
 
-
+        //OnePager
+        const onePager = "https://laclick.com";
 
         var setting = {
             //Widths
@@ -39,7 +48,13 @@ function loadSettings(){
             google4:google4, //green
             button:button,
             //Icons
-            Academy_icon:Academy_icon,
+            academy_icon:academy_icon,
+            welcome_icon:welcome_icon,
+            roundtable_icon:roundtable_icon,
+            graduation_icon:graduation_icon,
+            summit_icon:summit_icon,
+            //OnePager
+            onePager:onePager,
         }
         return setting
     })
