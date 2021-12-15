@@ -33,12 +33,13 @@ function loadActivityData(){
   var activities = activityValues.map((row)=>{
     var activity = {
      categoryId: row[0],
-     programId:row[1],
-     programName:row[2],
-     programDescription:row[3],
-     programURL:row[4],
-     googlePOC:row[5],
-     nominateURL:row[6],
+     activityId:row[1],
+     activityName:row[2],
+     targetSegment:row[3],
+     activityDescription:row[4],
+     activityURL:row[5],
+     googlePOC:row[6],
+     nominateURL:row[7],
      events: events[row[1]] || [],
     }   
     return activity                                        
